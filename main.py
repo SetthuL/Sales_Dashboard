@@ -1,6 +1,6 @@
 import os
 import matplotlib.pyplot as plt
-from data import products, daily_sales
+from data import products, prices, daily_sales
 
 def save_charts():
     if not os.path.exists('charts'):
@@ -24,4 +24,23 @@ def plot_daily_sales(products, daily_sales):
     
     plt.show()
     
+def plot_sales_charts(products, prices, daily_sales):
+   rev = []
+   
+   for price, sales in zip(prices, daily_sales):
+    rev.append(price * sales)
+
+   plt.figure()
+   plt.title("Revenue from Electronic Products")
+   plt.xlabel("Products")
+   plt.ylabel("Revenue (R)")
+   plt.bar(products, rev)
+   plt.xticks(rotation=45, ha='right')
+   plt.tight_layout()
+   plt.savefig('charts/revenue.png')
+
+   plt.show()
+
+plot_sales_charts(products, prices, daily_sales)
+save_charts()
 plot_daily_sales(products, daily_sales)
