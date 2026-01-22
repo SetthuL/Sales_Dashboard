@@ -11,8 +11,8 @@ def plot_daily_sales(products, daily_sales):
     plt.ylabel("Number of Sales")
     plt.bar(products, daily_sales, color='skyblue')
     plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
     
     plt.show()
     
 plot_daily_sales(products, daily_sales)
-    
