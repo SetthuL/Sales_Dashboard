@@ -40,7 +40,22 @@ def plot_sales_charts(products, prices, daily_sales):
    plt.savefig('charts/revenue.png')
 
    plt.show()
+   
+def sort_by_rev(item):
+    return item [1]
+   
+def top_3_products_by_rev(products, prices, daily_sales):
+    revenue = [p * s for p, s in zip(prices, daily_sales)]
+    prod_rev = list(zip(products, revenue))
+    
+    prod_rev.sort(key=sort_by_rev, reverse=True) # Sort by revenue descending
+    
+    print("Top 3 Products by Revenue:")
+    for prod, rev in prod_rev[:3]:
+        print(f"{prod}: R{rev:.2f}") # Display revenue with two decimal
+        
 
-plot_sales_charts(products, prices, daily_sales)
 save_charts()
+plot_sales_charts(products, prices, daily_sales)
 plot_daily_sales(products, daily_sales)
+top_3_products_by_rev(products, prices, daily_sales)
