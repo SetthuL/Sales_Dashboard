@@ -13,6 +13,8 @@ def calculate_daily_sales():
 '''
 plt.figure()
 
+plt.suptitle("Electronic Products Sales Analysis for the year - 2025", fontsize=16, weight="bold")
+
 def plot_daily_sales(products, daily_sales):
     plt.subplot(2, 2, 1)
     plt.title("Daily Sales of Electronic Products")
