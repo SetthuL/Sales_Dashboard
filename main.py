@@ -11,7 +11,12 @@ def calculate_daily_sales():
     products = []
     daily_sales = []
 '''
-plt.figure()
+
+def value_labels(values):
+    for i, v in enumerate(values):
+        plt.text(i, v * 1.01, str(v), ha="center", va="bottom", fontsize=8)
+        
+plt.figure(figsize=(12, 8))
 
 plt.suptitle("Electronic Products Sales Analysis for the year - 2025", fontsize=16, weight="bold")
 
@@ -21,10 +26,9 @@ def plot_daily_sales(products, daily_sales):
     plt.xlabel("Products")
     plt.ylabel("Number of Sales")
     plt.bar(products, daily_sales, color='skyblue')
+    value_labels(daily_sales)
     plt.xticks(rotation=45, ha='right')
-    
-    plt.savefig('charts/daily_sales.png')
-    
+ 
 def plot_sales_charts(products, prices, daily_sales):
    rev = []
    
@@ -36,8 +40,8 @@ def plot_sales_charts(products, prices, daily_sales):
    plt.xlabel("Products")
    plt.ylabel("Revenue (R)")
    plt.bar(products, rev)
+   value_labels(rev)
    plt.xticks(rotation=45, ha='right')
-   plt.savefig('charts/revenue.png')
 
    
 def sort_by_rev(item):
@@ -63,8 +67,8 @@ def top_3_products_by_rev(products, prices, daily_sales):
     plt.xlabel("Products")
     plt.ylabel("Revanues (R)")
     plt.bar(top_products, top_revenue, color="Green")
-    
-    plt.savefig('charts/top_3_revenue.png')
+    value_labels(top_revenue)
+    plt.xticks(rotation=45, ha='right')
     
     '''
     print("Top 3 Products by Revenue:")
@@ -76,5 +80,6 @@ plot_sales_charts(products, prices, daily_sales)
 plot_daily_sales(products, daily_sales)
 top_3_products_by_rev(products, prices, daily_sales)
 
-plt.tight_layout()
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+plt.savefig('charts/electronic_products_sales_analysis_2025.png')
 plt.show()
