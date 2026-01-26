@@ -11,18 +11,17 @@ def calculate_daily_sales():
     products = []
     daily_sales = []
 '''
+plt.figure()
 
 def plot_daily_sales(products, daily_sales):
+    plt.subplot(2, 2, 1)
     plt.title("Daily Sales of Electronic Products")
     plt.xlabel("Products")
     plt.ylabel("Number of Sales")
     plt.bar(products, daily_sales, color='skyblue')
     plt.xticks(rotation=45, ha='right')
-    plt.tight_layout()
     
     plt.savefig('charts/daily_sales.png')
-    
-    plt.show()
     
 def plot_sales_charts(products, prices, daily_sales):
    rev = []
@@ -30,16 +29,14 @@ def plot_sales_charts(products, prices, daily_sales):
    for price, sales in zip(prices, daily_sales):
     rev.append(price * sales)
 
-   plt.figure()
+   plt.subplot(2, 2, 2)
    plt.title("Revenue from Electronic Products")
    plt.xlabel("Products")
    plt.ylabel("Revenue (R)")
    plt.bar(products, rev)
    plt.xticks(rotation=45, ha='right')
-   plt.tight_layout()
    plt.savefig('charts/revenue.png')
 
-   plt.show()
    
 def sort_by_rev(item):
     return item [1]
@@ -59,13 +56,13 @@ def top_3_products_by_rev(products, prices, daily_sales):
         top_products.append(product)
         top_revenue.append(rev)
         
+    plt.subplot(2, 2, 3)
     plt.title("Top 3 Products Revanue")
     plt.xlabel("Products")
     plt.ylabel("Revanues (R)")
-    plt.bar(top_products, top_revenue, color="violet")
+    plt.bar(top_products, top_revenue, color="Green")
     
-    plt.show()
-    
+    plt.savefig('charts/top_3_revenue.png')
     
     '''
     print("Top 3 Products by Revenue:")
@@ -76,3 +73,6 @@ save_charts()
 plot_sales_charts(products, prices, daily_sales)
 plot_daily_sales(products, daily_sales)
 top_3_products_by_rev(products, prices, daily_sales)
+
+plt.tight_layout()
+plt.show()
