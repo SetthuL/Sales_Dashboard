@@ -50,11 +50,28 @@ def top_3_products_by_rev(products, prices, daily_sales):
     
     prod_rev.sort(key=sort_by_rev, reverse=True) # Sort by revenue descending
     
+    top_3 = prod_rev[:3]
+    
+    top_products = []
+    top_revenue = []
+    
+    for product, rev in top_3:
+        top_products.append(product)
+        top_revenue.append(rev)
+        
+    plt.title("Top 3 Products Revanue")
+    plt.xlabel("Products")
+    plt.ylabel("Revanues (R)")
+    plt.bar(top_products, top_revenue, color="violet")
+    
+    plt.show()
+    
+    
+    '''
     print("Top 3 Products by Revenue:")
     for prod, rev in prod_rev[:3]:
         print(f"{prod}: R{rev:.2f}") # Display revenue with two decimal
-        
-
+    '''
 save_charts()
 plot_sales_charts(products, prices, daily_sales)
 plot_daily_sales(products, daily_sales)
