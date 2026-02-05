@@ -14,8 +14,18 @@ def calculate_daily_sales():
 
 def value_labels(values, is_currency=False):
     for i, v in enumerate(values):
-        label = f"R{v/1000:.0f}k" if is_currency else str(v)
-        plt.text(i, v * 1.02, str(v), ha="center", va="bottom", fontsize=8)
+        if is_currency:
+            if v >= 1000:
+                label = f"R{int(v/1000)}k"
+            else:
+                label = f"R{v}"
+        else:
+            label = str(v)
+        
+        '''
+        label = f"R{v/1000:.0f}k" if is_currency else str(v)'''
+        
+        plt.text(i, v * 1.05, label, ha="center", va="bottom", fontsize=8)
         
 plt.figure(figsize=(12, 8))
 
