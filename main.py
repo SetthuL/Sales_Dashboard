@@ -12,9 +12,10 @@ def calculate_daily_sales():
     daily_sales = []
 '''
 
-def value_labels(values):
+def value_labels(values, is_currency=False):
     for i, v in enumerate(values):
-        plt.text(i, v * 1.01, str(v), ha="center", va="bottom", fontsize=8)
+        label = f"R{v/1000:.0f}k" if is_currency else str(v)
+        plt.text(i, v * 1.02, str(v), ha="center", va="bottom", fontsize=8)
         
 plt.figure(figsize=(12, 8))
 
@@ -26,6 +27,8 @@ def plot_daily_sales(products, daily_sales):
     plt.xlabel("Products")
     plt.ylabel("Number of Sales")
     plt.bar(products, daily_sales, color='skyblue')
+    plt.grid(axis="y", linestyle="--", alpha=0.4)
+    plt.ylim(0, max(daily_sales) * 1.35)
     value_labels(daily_sales)
     plt.xticks(rotation=45, ha='right')
  
@@ -39,8 +42,10 @@ def plot_sales_charts(products, prices, daily_sales):
    plt.title("Revenue from Electronic Products")
    plt.xlabel("Products")
    plt.ylabel("Revenue (R)")
-   plt.bar(products, rev)
-   value_labels(rev)
+   plt.bar(products, rev , color="orange", width=0.5)
+   plt.grid(axis="y", linestyle="--", alpha=0.4)
+   plt.ylim(0, max(rev) * 1.35)
+   value_labels(rev, is_currency=True)
    plt.xticks(rotation=45, ha='right')
 
    
@@ -63,11 +68,13 @@ def top_3_products_by_rev(products, prices, daily_sales):
         top_revenue.append(rev)
         
     plt.subplot(2, 2, 3)
-    plt.title("Top 3 Products Revanue")
+    plt.title("Top 3 Products Revenue")
     plt.xlabel("Products")
-    plt.ylabel("Revanues (R)")
+    plt.ylabel("Revenues (R)")
     plt.bar(top_products, top_revenue, color="Green")
+    plt.grid(axis="y", linestyle="--", alpha=0.4)
     value_labels(top_revenue)
+    plt.ylim(0, max(top_revenue) * 1.35)
     plt.xticks(rotation=45, ha='right')
     
     '''
